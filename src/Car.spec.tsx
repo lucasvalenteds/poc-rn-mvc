@@ -34,7 +34,6 @@ describe('Controller', () => {
     expect(controller.result.current.model.lastCar).toStrictEqual(defaultCar);
 
     await TestingHooks.act(async () => {});
-    await TestingHooks.act(async () => {});
 
     expect(controller.result.current.model.lastCar).toStrictEqual({
       uuid: f250.uuid,
