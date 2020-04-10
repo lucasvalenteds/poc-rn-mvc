@@ -84,13 +84,18 @@ export const CarViewDefault: React.FC<CarView> = (
   return (
     <View style={style.container}>
       <View style={style.button}>
-        <Button title={'Update'} onPress={refresh} />
+        <Button testID={'car-update'} title={'Update'} onPress={refresh} />
       </View>
       <View style={style.lastCar}>
-        <Text style={style.lastCarId}>{model.lastCar.uuid}</Text>
-        <Text style={style.lastCarTimestamp}>{model.lastCar.timestamp}</Text>
+        <Text testID={'car-lastcar-uuid'} style={style.lastCarId}>
+          {model.lastCar.uuid}
+        </Text>
+        <Text testID={'car-lastcar-timestamp'} style={style.lastCarTimestamp}>
+          {model.lastCar.timestamp}
+        </Text>
       </View>
       <FlatList
+        testID={'car-cars'}
         data={model.cars}
         keyExtractor={(props) => props.uuid}
         renderItem={(props): React.ReactElement => (
