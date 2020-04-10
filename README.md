@@ -7,6 +7,7 @@ It demonstrate how to implement a screen following an approach based on [MVC](ht
 | Description | Command |
 | :--- | :--- |
 | Install dependencies | `npm install` |
+| Run tests | `npm test` |
 | Start Metro | `npm start` |
 | Run app | `npm run android` |
 
