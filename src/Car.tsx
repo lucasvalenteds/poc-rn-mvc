@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Dimensions,
@@ -28,11 +28,9 @@ export interface CarView {
   controller: CarController;
 }
 
-export const CarControllerDefault = (
-  httpClient: AxiosInstance,
-): CarController => {
-  const [cars, setCards] = React.useState<Car[]>([]);
-  const [lastCar, setLastCar] = React.useState<Car>({
+export function useCarController(httpClient: AxiosInstance): CarController {
+  const [cars, setCards] = useState<Car[]>([]);
+  const [lastCar, setLastCar] = useState<Car>({
     uuid: '',
     timestamp: '',
   });
@@ -57,7 +55,7 @@ export const CarControllerDefault = (
       lastCar,
     },
   };
-};
+}
 
 export const CarViewDefault: React.FC<CarView> = (
   props,
