@@ -40,6 +40,29 @@ describe('Controller', () => {
       timestamp: expect.any(String),
     });
   });
+
+  test('Persisting last car before update it with a new one', async () => {
+    mockAdapter
+      .onGet('/uuid')
+      .reply(200, { uuid: f250.uuid })
+      .onGet('/uuid')
+      .reply(200, { uuid: ranger.uuid });
+
+    const controller = TestingHooks.renderHook(() => {
+      return useCarController(httpClient);
+    });
+
+    expect(controller.result.current.model.lastCar).toStrictEqual(defaultCar);
+
+    await TestingHooks.act(async () => {});
+    await TestingHooks.act(async () => {});
+
+    expect(controller.result.current.model.lastCar).toStrictEqual({
+      uuid: ranger.uuid,
+      timestamp: expect.any(String),
+    });
+    expect(controller.result.current.model.cars).toHaveLength(1);
+  });
 });
 
 describe('View', () => {
